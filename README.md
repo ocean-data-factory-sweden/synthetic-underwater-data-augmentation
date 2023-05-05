@@ -115,6 +115,14 @@ Train the networks with the following settings:
 - Mini-batch size: $2$
 
 ```
+ #copy over both datasets into the root directory of the Colab VM
+cp /obj.zip ../
+cp /test.zip ../
+
+unzip ../test.zip -d data/
+```
+
+```
 # train your custom detector
 !./darknet detector train data/obj.data cfg/yolo-obj.cfg yolov4.conv.137 -dont_show -map
 ```
