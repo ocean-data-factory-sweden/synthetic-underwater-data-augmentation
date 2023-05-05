@@ -78,22 +78,21 @@ Download the pre-trained weights for the convolutional layers of the model train
 Use the default configurations for the models' training and set the width and height of the network to $512 \times 512$ pixels. 
 Resize every image to this size during both training and detection (yolo-obj.cfg).
 
-```
-Edit the max_batches = classes*2000 but not less than number of training images or 6000 in case we have 3 classes
-steps = 80% of max_batches, 90% of max_batches
-network size width = 416, height = 416 or any value multiple of 32
-Change number of classes (search yolo)
-Change filters to = (classes + 5) * 3 in each convolutional before each yolo layer
-```
+- Edit the max_batches = classes*2000 but not less than number of training images or 6000 in case we have 3 classes
+- steps = 80% of max_batches, 90% of max_batches
+- network size width = 416, height = 416 or any value multiple of 32
+- Change number of classes (search yolo)
+- Change filters to = (classes + 5) * 3 in each convolutional before each yolo layer
 
 ```# move the custom .cfg to cfg folder
 cp /yolo-obj.cfg ./cfg
-
+```
+```
 # move the obj.names and obj.data files to data folder
 cp /obj.names ./data
 cp /obj.data  ./data
-
-
+```
+```
 # move the train.txt and valid.txt and test.txt files data folder
 cp train.txt ./data
 cp valid.txt  ./data
