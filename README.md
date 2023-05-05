@@ -44,29 +44,64 @@ Use the PyTorch implementation of DiffAugment provided by the paper [1]. Apply t
 Use all three transformations as recommended by the authors when training with limited data.
 
 
-
-
-
-
 ## Object Detection
 
 #### Step 1: Prepare the datasets
 
-- Collect 3599 ($80$%) of the initial and frame-tracking generated images (total of 4499) for the YOLO+FrameTrack model.
-- Collect 2407 images ($90$%) of the initial and synthetically generated images (total of 2675) for the YOLO+Synthetic model.
+- 3599 ($80$%) of the initial and frame-tracking generated images (total of 4499) for the YOLO+FrameTrack model.
+- 2407 images ($90$%) of the initial and synthetically generated images (total of 2675) for the YOLO+Synthetic model.
 
 #### Step 2: Set up YOLOv4 environment
 Clone the YOLOv4 repository [3] and set up the environment as described in the official documentation.
+```
+git clone https://github.com/AlexeyAB/darknet
+```
+```
+# change makefile to have GPU and OPENCV enabled (edit makefile to enable GPU and opencv)
+  cd darknet
+  sed -i 's/OPENCV=0/OPENCV=1/' Makefile
+  sed -i 's/GPU=0/GPU=1/' Makefile
+  sed -i 's/CUDNN=0/CUDNN=1/' Makefile
+  sed -i 's/CUDNN_HALF=0/CUDNN_HALF=1/' Makefile
+```
+```
+# make darknet (builds darknet to use the darknet executable file to run or train object detectors)
+make
+```
 
 #### Step 3: Prepare pre-trained weights
 Download the pre-trained weights for the convolutional layers of the model trained on the MS COCO dataset.
 
-#### Step 4: Configure the models
+```wget https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v3_optimal/yolov4.conv.137```
+
+#### Step 4: Configure Files for Training
 Use the default configurations for the models' training and set the width and height of the network to $512 \times 512$ pixels. 
-Resize every image to this size during both training and detection.
+Resize every image to this size during both training and detection (yolo-obj.cfg).
+
+```
+Edit the max_batches = classes*2000 but not less than number of training images or 6000 in case we have 3 classes
+steps = 80% of max_batches, 90% of max_batches
+network size width = 416, height = 416 or any value multiple of 32
+Change number of classes (search yolo)
+Change filters to = (classes + 5) * 3 in each convolutional before each yolo layer
+```
+
+```# move the custom .cfg to cfg folder
+cp /yolo-obj.cfg ./cfg
+
+# move the obj.names and obj.data files to data folder
+cp /obj.names ./data
+cp /obj.data  ./data
+
+
+# move the train.txt and valid.txt and test.txt files data folder
+cp train.txt ./data
+cp valid.txt  ./data
+cp test.txt  ./data
+```
 
 #### Step 5: Apply data augmentation techniques
-Employ the following data augmentation techniques during training:
+Employ the following data augmentation techniques during training (in cfg file):
 
 - Random adjustments to saturation, hue, and exposure
 - Mosaic (combines 4 training images into one image)
@@ -80,8 +115,26 @@ Train the networks with the following settings:
 - Total batch iterations: $6000$
 - Mini-batch size: $2$
 
+```
+# train your custom detector! (uncomment %%capture below if run into memory issues or Colab is crashing)
+!./darknet detector train data/obj.data cfg/yolo-obj.cfg yolov4.conv.137 -dont_show -map
+```
+
+
 #### Step 7: Monitor training and select the final models
 After the burn-in period, calculate the mAP@0.5 for every $4^{th}$ epoch on the validation set. Use this metric, along with the loss, to determine when to stop training.
+
+```
+#Checking the Mean Average Precision (mAP)
+./darknet detector map data/obj.data cfg/yolo-obj.cfg /backup/yolo-obj_best.weights -thresh 0.75
+```
+
+#### Step 8: Test the model
+
+```
+# test the detector 
+./darknet detector test data/obj.data cfg/yolov4-obj.cfg /backup/yolov4-obj_last.weights /images/example.jpg
+```
 
 #### References
 [1] [Differentiable Augmentation for Data-Efficient GAN Training-Github](https://github.com/mit-han-lab/data-efficient-gans/tree/master/DiffAugment-stylegan2-pytorch)
