@@ -115,7 +115,7 @@ Train the networks with the following settings:
 - Mini-batch size: $2$
 
 ```
-# train your custom detector! (uncomment %%capture below if run into memory issues or Colab is crashing)
+# train your custom detector
 !./darknet detector train data/obj.data cfg/yolo-obj.cfg yolov4.conv.137 -dont_show -map
 ```
 
