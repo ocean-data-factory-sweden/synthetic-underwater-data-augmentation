@@ -138,14 +138,14 @@ After the burn-in period, calculate the mAP@0.5 for every $4^{th}$ epoch on the 
 
 ```
 # checking the Mean Average Precision (mAP)
-./darknet detector map data/obj.data cfg/yolo-obj.cfg /backup/yolo-obj_last.weights -thresh 0.75
+./darknet detector map data/obj.data cfg/yolo-obj.cfg /backup/yolo-obj_last_YOLO+Synthetic.weights -thresh 0.75
 ```
 
 #### Step 8: Test the model
 
 ```
 # test the detector 
-./darknet detector test data/obj.data cfg/yolov4-obj.cfg /backup/yolov4-obj_last.weights /images/example.jpg
+./darknet detector test data/obj.data cfg/yolov4-obj.cfg /backup/yolo-obj_last_YOLO+Synthetic.weights /images/example.jpg
 ```
 
 #### References
