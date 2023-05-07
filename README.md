@@ -84,7 +84,7 @@ Resize every image to this size during both training and detection (yolo-obj.cfg
 
 - Edit the max_batches = classes*2000 but not less than number of training images or 6000 in case we have 3 classes
 - steps = 80% of max_batches, 90% of max_batches
-- network size width = 416, height = 416 or any value multiple of 32
+- network size width = 512, height = 512 
 - Change number of classes (search yolo)
 - Change filters to = (classes + 5) * 3 in each convolutional before each yolo layer
 
