@@ -163,6 +163,6 @@ After the burn-in period, calculate the mAP@0.5 for every $4^{th}$ epoch on the 
 [4] [YOLOv4-Darknet](https://github.com/AlexeyAB/darknet)
 
 #### Note
-All images were labeled usin [labelImg tool](https://github.com/tzutalin/labelImg)
+- All images were labeled using [labelImg tool](https://github.com/tzutalin/labelImg)
 
 
