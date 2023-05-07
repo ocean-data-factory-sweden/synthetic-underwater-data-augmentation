@@ -22,15 +22,15 @@ git clone https://github.com/mit-han-lab/data-efficient-gans/tree/master/DiffAug
 ```
 
 #### Step 2: Train StyleGAN2
-Train the StyleGAN2 model with the following hyperparameters:
+Train the StyleGAN2 model with the following hyperparameters (the model was trained with the implemented default hyper-parameters):
 
-- Image size: $512\times512$
 - Optimizer: Adam with momentum parameters $\beta_1=0$, $\beta_2=0.99$
 - Learning rate $0.002$ except for the mapping network which which used $100$ times lower learning rate
 - Equalized learning rate approach: Enabled [3]
 - Objective function: Improved loss from the original GAN paper, $R_1$ regularization, and regularization parameter $\gamma = 10$
 - Activation function: Leaky ReLU with slope set to $\alpha=0.2$
 - Batch size: $8$
+- Image size: $512\times512$
 - Training length: $500k$ image iterations (approximately $1222$ epochs)
 
 ```
@@ -41,7 +41,7 @@ bash /opt/local/bin/run_py_job.sh -e stylegan -p gpu-shannon -c 8 generate.py --
 ```
 
 #### Step 3: Monitor training and select the final model
-During training, generate images every $40k$ iteration. Observe the quality of the generated images and select the weights for the final model when the quality stops improving. Use the exponential moving average of the generator weights with decay $0.999$.
+During training, generate images every $40k$ iteration. Weights at iteration $280k$ were selected as the final model's weights.
 
 #### Step 4: Apply DiffAugment
 Use the PyTorch implementation of DiffAugment provided by the paper [1]. Apply the following augmentation techniques:
