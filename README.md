@@ -31,6 +31,10 @@ Train the StyleGAN2 model with the following hyperparameters:
 - Batch size: $8$
 - Training length: $500k$ image iterations (approximately $1222$ epochs)
 
+```python train.py --outdir=training-runs --data=data --gpus=1 --workers 2```
+
+```python generate.py --output=out --seed=0 --num-rows=10 --num-cols=12```
+
 #### Step 3: Monitor training and select the final model
 During training, generate images every $40k$ iteration. Observe the quality of the generated images and select the weights for the final model when the quality stops improving. Use the exponential moving average of the generator weights with decay $0.999$.
 
