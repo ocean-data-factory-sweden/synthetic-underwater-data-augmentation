@@ -37,14 +37,7 @@ Train the StyleGAN2 model with the following hyperparameters (the model was trai
 bash /opt/local/bin/run_py_job.sh -e stylegan -p gpu-shannon -c 8 -s train.py -- --outdir=out_dir --data=resized_images --gpus=1 --workers 2
 ```
 
-#### Step 3: Monitor training and select the final model
-During training, generate images every $40k$ iteration. Weights at iteration $280k$ were selected as the final model's weights.
-
-```
-bash /opt/local/bin/run_py_job.sh -e stylegan -p gpu-shannon -c 8 generate.py -- --output=out_dir --seed=0 --network=/models/network-snapshot-000280.pkl
-```
-
-#### Step 4: Apply DiffAugment
+#### Step 3: Apply DiffAugment
 Use the PyTorch implementation of DiffAugment provided by the paper [1]. Apply the following augmentation techniques:
 
 - Color: Adjust brightness, saturation, and contrast
@@ -53,6 +46,12 @@ Use the PyTorch implementation of DiffAugment provided by the paper [1]. Apply t
 
 Use all three transformations as recommended by the authors when training with limited data.
 
+#### Step 4: Monitor training and select the final model
+During training, generate images every $40k$ iteration. Weights at iteration $280k$ were selected as the final model's weights.
+
+```
+bash /opt/local/bin/run_py_job.sh -e stylegan -p gpu-shannon -c 8 generate.py -- --output=out_dir --seed=0 --network=/models/network-snapshot-000280.pkl
+```
 
 ## Object Detection
 
