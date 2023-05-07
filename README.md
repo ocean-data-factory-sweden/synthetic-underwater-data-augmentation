@@ -52,7 +52,7 @@ Use all three transformations as recommended by the authors when training with l
 
 #### Step 1: Prepare the datasets
 
-- 3599 ($80$%) of the initial and frame-tracking generated images (total of 4499) for the YOLO+FrameTrack model.
+- 2407 images ($90$%) of the initial and frame-tracking generated images (random sample of 4499) for the YOLO+FrameTrack model.
 - 2407 images ($90$%) of the initial and synthetically generated images (total of 2675) for the YOLO+Synthetic model.
 
 #### Step 2: Set up YOLOv4 environment
