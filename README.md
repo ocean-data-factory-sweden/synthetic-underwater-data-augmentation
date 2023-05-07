@@ -88,7 +88,8 @@ Resize every image to this size during both training and detection (yolo-obj.cfg
 - Change number of classes (search yolo)
 - Change filters to = (classes + 5) * 3 in each convolutional before each yolo layer
 
-```# move the custom .cfg to cfg folder
+```
+# move the custom .cfg to cfg folder
 cp /yolo-obj.cfg ./cfg
 ```
 ```
@@ -119,7 +120,7 @@ Train the networks with the following settings:
 - Mini-batch size: $2$
 
 ```
- #copy over both datasets into the root directory of the Colab VM
+# copy over both datasets into the root directory of the Colab VM
 cp /obj.zip ../
 cp /test.zip ../
 
@@ -136,7 +137,7 @@ unzip ../test.zip -d data/
 After the burn-in period, calculate the mAP@0.5 for every $4^{th}$ epoch on the validation set. Use this metric, along with the loss, to determine when to stop training.
 
 ```
-#Checking the Mean Average Precision (mAP)
+# checking the Mean Average Precision (mAP)
 ./darknet detector map data/obj.data cfg/yolo-obj.cfg /backup/yolo-obj_last.weights -thresh 0.75
 ```
 
