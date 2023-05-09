@@ -6,7 +6,7 @@ All data and models are published at the Swedish National Data Service under the
 ## Data Augmentation
 
 ### Frame Tracking Data Augmentation
-In order to address dataset limitations, we used a straightforward heuristic with a frame tracking algorithm ([see code](https://github.com/ocean-data-factory-sweden/kso utils/blob/e6d80f410a8c2145ade6c362e4a7e0d585873ec9/kso_utils/yolo_utils.py)) to label 10 adjacent frames (5 before and 5 after the current frame) in a video sequence. This technique increases the likelihood of capturing the entire object in at least one frame while minimizing potential duplication, making it particularly effective for footage captured by fast-moving cameras.
+In order to address dataset limitations, we used a straightforward heuristic with a frame tracking algorithm [see code](https://github.com/ocean-data-factory-sweden/kso utils/blob/e6d80f410a8c2145ade6c362e4a7e0d585873ec9/kso_utils/yolo_utils.py) to label 10 adjacent frames (5 before and 5 after the current frame) in a video sequence. This technique increases the likelihood of capturing the entire object in at least one frame while minimizing potential duplication, making it particularly effective for footage captured by fast-moving cameras.
 
 
 ### Synthetic Data Augmentation
