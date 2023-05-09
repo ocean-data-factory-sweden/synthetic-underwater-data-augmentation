@@ -152,7 +152,7 @@ After the burn-in period, calculate the mAP@0.5 for every $4^{th}$ epoch on the 
 ```
 
 #### References
-[1] [Frame-Tracker]|(https://github.com/ocean-data-factory-sweden/kso utils/blob/e6d80f410a8c2145ade6c362e4a7e0d585873ec9/kso_utils/yolo_utils.py)
+[1] [Frame-Tracker](https://github.com/ocean-data-factory-sweden/kso utils/blob/e6d80f410a8c2145ade6c362e4a7e0d585873ec9/kso_utils/yolo_utils.py)
 
 [2] [Differentiable Augmentation for Data-Efficient GAN Training-Github](https://github.com/mit-han-lab/data-efficient-gans/tree/master/DiffAugment-stylegan2-pytorch)
 
