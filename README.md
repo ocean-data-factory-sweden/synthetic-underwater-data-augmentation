@@ -123,6 +123,11 @@ Train the networks with the following settings:
 - Mini-batch size: $2$
 
 ```
+ #copy over both datasets into the root directory
+cp /obj.zip ../
+cp /test.zip ../
+```
+```
 # copy over both datasets into the root directory
 cp /obj.zip ../
 cp /test.zip ../
