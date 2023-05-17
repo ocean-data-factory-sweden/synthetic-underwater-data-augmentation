@@ -127,6 +127,7 @@ Train the networks with the following settings:
 cp /obj.zip ../
 cp /test.zip ../
 
+unzip ../obj.zip -d data/
 unzip ../test.zip -d data/
 ```
 
