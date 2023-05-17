@@ -93,18 +93,18 @@ Resize every image to this size during both training and detection (yolo-obj.cfg
 
 ```
 # move the custom .cfg to cfg folder
-cp /yolo-obj.cfg ./cfg
+cp your_folder/yolo-obj.cfg ./cfg
 ```
 ```
 # move the obj.names and obj.data files to data folder
-cp /obj.names ./data
-cp /obj.data  ./data
+cp your_folder/obj.names ./data
+cp your_folder/obj.data  ./data
 ```
 ```
 # move the train.txt and valid.txt and test.txt files data folder
-cp train.txt ./data
-cp valid.txt  ./data
-cp test.txt  ./data
+cp your_folder/train.txt ./data
+cp your_folder/valid.txt  ./data
+cp your_folder/test.txt  ./data
 ```
 
 #### Step 5: Apply data augmentation techniques
@@ -123,15 +123,18 @@ Train the networks with the following settings:
 - Mini-batch size: $2$
 
 ```
+cd darknet
+```
+```
  #copy over both datasets into the root directory
-cp /obj.zip ../
-cp /test.zip ../
+cp your_folder/obj.zip ../
+cp your_folder/test.zip ../
 ```
 ```
 # copy over both datasets into the root directory
-cp /obj.zip ../
-cp /test.zip ../
-
+cp your_folder/obj.zip ../
+cp your_folder/test.zip ../
+#unzip the datasets and their contents so that they are now in /darknet/data/ folder
 unzip ../obj.zip -d data/
 unzip ../test.zip -d data/
 ```
