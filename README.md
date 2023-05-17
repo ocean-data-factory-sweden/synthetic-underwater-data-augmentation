@@ -134,6 +134,8 @@ cp your_folder/test.zip ../
 # copy over both datasets into the root directory
 cp your_folder/obj.zip ../
 cp your_folder/test.zip ../
+```
+```
 #unzip the datasets and their contents so that they are now in /darknet/data/ folder
 unzip ../obj.zip -d data/
 unzip ../test.zip -d data/
